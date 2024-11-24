@@ -18,6 +18,7 @@ custom:
 functions:
   S3FileUploader:
     handler: api/upload.handler
+    name: s3-file-uploader
     description: A lambda handler that uploads a file to an S3 bucket based on an API Gateway 
     events:
       - http:
