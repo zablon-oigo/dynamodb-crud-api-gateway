@@ -4,3 +4,7 @@ provider:
   name: aws
   runtime: nodejs20.x
   stage: dev
+  region: us-west-2
+  apiName: ${self:service}
+  memorySize: 128
+  timeout: 10
