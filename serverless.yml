@@ -5,38 +5,12 @@ provider:
   runtime: nodejs20.x
   stage: dev
   region: us-west-2
-  apiName: ${self:service}
-  memorySize: 128
-  timeout: 10
   environment:
-    FILE_UPLOAD_BUCKET_NAME: ${self.custom.fileBucketName}
-  
+    DYNAMO_TABLE_NAME: ${self:custom.postsTableName}
+
 custom:
-  fileBucketName: s3-file-bucket-${self:provider.stage}
+  postsTableName: posts-table-${self:provider.stage}
 
 
-functions:
-  S3FileUploader:
-    handler: api/upload.handler
-    name: s3-file-uploader
-    description: A lambda handler that uploads a file to an S3 bucket based on an API Gateway 
-    events:
-      - http:
-          path: file
-          method: POST 
-    iamRoleStatements:
-      - Effect: 'Allow'
-        Action:
-          - 's3:Put*'
-        Resource: arn:aws:s3:::${self:custom.fileBucketName}/*
-
-  s3FileGet:
-    handler: api/get.handler
-    name: s3-file-get
-resources:
-  Resources:
-    fileBucketName:
-        Type: AWS::S3::Bucket
-        Properties:
-          BucketName: ${self:custom.fileBucketName}
-          AccessControl: Private
+plugins:
+  - serverless-iam-roles-per-function
