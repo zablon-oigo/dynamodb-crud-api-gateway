@@ -29,6 +29,9 @@ functions:
           - 's3:Put*'
         Resource: arn:aws:s3:::${self:custom.fileBucketName}/*
 
+  s3FileGet:
+    handler: api/get.handler
+    name: s3-file-get
 resources:
   Resources:
     fileBucketName:
