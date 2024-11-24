@@ -25,4 +25,15 @@ functions:
       - http:
           path: post/{postId}
           method: GET 
-          
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 'dynamodb:GetItem'
+        Resource: !GetAtt PostsTable.Arn
+  createPost:
+    handler: api.createPost
+    name: create-post
+    memorySize: 128
+    timeout: 5
+    events:
+      - 
