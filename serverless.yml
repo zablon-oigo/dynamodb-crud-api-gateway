@@ -14,6 +14,21 @@ provider:
 custom:
   fileBucketName: s3-file-bucket-${self:provider.stage}
 
+
+functions:
+  S3FileUploader:
+    handler: api/upload.handler
+    description: A lambda handler that uploads a file to an S3 bucket based on an API Gateway 
+    events:
+      - http:
+          path: file
+          method: POST 
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 's3:Put*'
+        Resource: arn:aws:s3:::${self:custom.fileBucketName}/*
+
 resources:
   Resources:
     fileBucketName:
