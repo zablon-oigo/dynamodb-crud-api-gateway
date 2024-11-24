@@ -14,3 +14,15 @@ custom:
 
 plugins:
   - serverless-iam-roles-per-function
+
+functions:
+  getPost:
+    handler: api.getPost
+    name: get-post
+    memorySize: 128
+    timeout: 5
+    events:
+      - http:
+          path: post/{postId}
+          method: GET 
+          
