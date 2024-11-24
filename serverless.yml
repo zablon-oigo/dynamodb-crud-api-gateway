@@ -8,3 +8,8 @@ provider:
   apiName: ${self:service}
   memorySize: 128
   timeout: 10
+  environment:
+    FILE_UPLOAD_BUCKET_NAME: ${self.custom.fileBucketName}
+  
+custom:
+  fileBucketName: s3-file-bucket-${self:provider.stage}
