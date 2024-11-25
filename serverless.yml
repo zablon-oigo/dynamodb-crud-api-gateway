@@ -73,4 +73,19 @@ functions:
         Action:
           - "dynamodb:DeleteItem"
         Resource: !GetAtt PostsTable.Arn
+
+  getAllPosts:
+    handler: api.getAllPosts
+    name: get-all-posts
+    memorySize: 128
+    timeout: 5
+    events:
+      - http:
+        path: posts
+        method: GET
+    iamRolseStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Scan"
+        Resource: !GetAtt PostsTable.Arn
         
