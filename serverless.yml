@@ -37,11 +37,12 @@ functions:
     timeout: 5
     events:
       - http:
-          path: post/{postId}
-          method: PUT
+          path: post
+          method: POST
     iamRoleStatements:
       - Effect: "Allow"
         Action:
-          - "dynamodb:UpdateItem"
+          - "dynamodb:PutItem"
         Resource: !GetAtt PostsTable.Arn
-        
+
+  
