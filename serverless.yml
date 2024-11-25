@@ -36,4 +36,12 @@ functions:
     memorySize: 128
     timeout: 5
     events:
-      - 
+      - http:
+          path: post/{postId}
+          method: PUT
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:UpdateItem"
+        Resource: !GetAtt PostsTable.Arn
+        
