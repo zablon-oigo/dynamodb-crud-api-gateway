@@ -41,6 +41,15 @@ const createPost=async (event)=>{
         response.body=JSON.stringify({
             message:"Successfully created post.",
             createResult
-        })
+        });
+    }catch(e){
+        console.error(e);
+        response.statusCode=500;
+        response.body=JSON.stringify({
+            message:"Failed to create post",
+            errorMsg: e.message,
+            errorStack:e.stack
+        });
     }
+    return response;
 }
