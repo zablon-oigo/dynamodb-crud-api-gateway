@@ -53,3 +53,6 @@ const createPost=async (event)=>{
     }
     return response;
 }
+const updatePost= async(event)=>{
+    const response={statusCode:200};
+}
