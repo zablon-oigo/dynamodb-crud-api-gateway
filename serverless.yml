@@ -81,11 +81,26 @@ functions:
     timeout: 5
     events:
       - http:
-        path: posts
+          path: posts
         method: GET
     iamRolseStatements:
       - Effect: "Allow"
         Action:
           - "dynamodb:Scan"
         Resource: !GetAtt PostsTable.Arn
-        
+
+resources:
+  Resources:
+    PostsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.postsTableName}
+        AttributeDefinitions:
+          - AttributeName: postId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: postId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
