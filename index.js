@@ -73,6 +73,23 @@ const updatePost= async(event)=>{
                 [`:value${index}`]: body[key],
             }), {})),
         };
+        const updateResult = await db.send(new UpdateItemCommand(params));
+
+        response.body = JSON.stringify({
+            message: "Successfully updated post.",
+            updateResult,
+        });
+
+        }catch (e) {
+            console.error(e);
+            response.statusCode = 500;
+            response.body = JSON.stringify({
+                message: "Failed to update post.",
+                errorMsg: e.message,
+                errorStack: e.stack,
+            });
         }
+    
+        return response;
     }
 }
