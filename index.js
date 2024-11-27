@@ -68,6 +68,11 @@ const updatePost= async(event)=>{
                 ...acc,
                 [`#key${index}`]: key,
             }), {}),
+            ExpressionAttributeValues: marshall(objKeys.reduce((acc, key, index) => ({
+                ...acc,
+                [`:value${index}`]: body[key],
+            }), {})),
+        };
         }
     }
 }
