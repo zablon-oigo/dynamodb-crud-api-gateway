@@ -61,6 +61,7 @@ const updatePost= async(event)=>{
         const objKeys=Object.keys(body);
         const parama={
             TableName:process.env.DYNAMODB_TABLE_NAME,
+            Key: marshall({ postId: event.pathParameters.postId }),
         }
     }
 }
