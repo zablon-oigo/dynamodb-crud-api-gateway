@@ -93,3 +93,6 @@ const updatePost= async(event)=>{
         return response;
     }
 }
+const deletePost=async (event)=>{
+    const response={statusCode:200}
+}
