@@ -115,4 +115,16 @@ const deletePost=async (event)=>{
         })
         
     }
+    return response
+}
+const getAllPosts=async()=>{
+    const response={statusCode:200}
+    try{
+        const{Items}=await db.send(new ScanCommand({TableName:process.env.DYNAMODB_TABLE_NAME}));
+        response.body=JSON.stringify({
+            message:"Success retrieved all posts",
+            data: Items.map((item)=>unmarshall(item)),
+            Items,
+        })
+    }
 }
