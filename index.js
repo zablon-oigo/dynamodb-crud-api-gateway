@@ -105,4 +105,9 @@ const deletePost=async (event)=>{
             deleteResult,
         })
     }
+    catch(e){
+        console.error(e)
+        response.statusCode=500;
+        
+    }
 }
