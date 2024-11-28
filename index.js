@@ -127,4 +127,14 @@ const getAllPosts=async()=>{
             Items,
         })
     }
+    catch(e){
+        console.error(e);
+        response.statusCode=500;
+        response.body=JSON.stringify({
+            message:"Failed to retrieve posts.",
+            errorMsg: e.message,
+
+        })
+    }
+    return response;
 }
