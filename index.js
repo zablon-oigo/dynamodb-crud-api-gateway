@@ -94,4 +94,15 @@ const updatePost = async (event) => {
 
 const deletePost=async (event)=>{
     const response={statusCode:200}
+    try{
+        const params={
+            TableName: process.env.DYNAMO_TABLE_NAME,
+            Key: marshall({postId:event.pathParameters.postId}),
+        };
+        const deleteResult=await db.send(new DeleteItemCommand(params));
+        response.body=JSON.stringify({
+            message:"Successfully deleted post.",
+            deleteResult,
+        })
+    }
 }
