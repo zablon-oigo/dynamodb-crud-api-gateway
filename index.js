@@ -108,6 +108,11 @@ const deletePost=async (event)=>{
     catch(e){
         console.error(e)
         response.statusCode=500;
+        response.body=JSON.stringify({
+            message: "Failed to delete post",
+            errorMsg: e.message,
+            errorStack: e.stack
+        })
         
     }
 }
