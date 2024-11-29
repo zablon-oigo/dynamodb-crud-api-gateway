@@ -138,3 +138,10 @@ const getAllPosts=async()=>{
     }
     return response;
 }
+module.exports={
+    getPost,
+    createPost,
+    updatePost,
+    deletePost,
+    getAllPosts
+}
