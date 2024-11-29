@@ -1,0 +1,5 @@
+name: Deploy DynamoDB CRUD API
+
+on:
+    push:
+      branches: [ main ]
