@@ -22,4 +22,11 @@ jobs:
       - name: Install Dependencies
         run: | 
              npm ci
-
+             - name: Install Serverless Framework
+             run: npm install -g serverless
+     
+      - name: serverless deploy
+        uses: serverless/github-action@v3.2
+        with:
+            args: deploy
+     
