@@ -18,13 +18,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-
       - name: Install Dependencies
-        run: | 
-             npm ci
-             - name: Install Serverless Framework
-             run: npm install -g serverless
-     
+        run: npm ci
       - name: serverless deploy
         uses: serverless/github-action@v3.2
         with:
